@@ -48,6 +48,7 @@
 				for i in range(4):
 					nbr = randint(0, len(moves)-1)
 					quatres_moves.append(moves[nbr])
+					moves.pop(nbr)
 				return quatres_moves
 				
 			def item():
