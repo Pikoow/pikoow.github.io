@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	    <meta charset="utf-8" >
+	    <title>Generate a random Hisuian-Zoroark paste !</title>
+		<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+		<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+	</head>
+	<body>
+		<script> 
+			function triggerExample() {
+  				const element = document.querySelector('#set');
+  				element.select();
+  				element.setSelectionRange(0, 99999);
+  				document.execCommand('copy');
+			}
+		</script> 
+
+		<center>
+			<p>Generate a random Hisuian-Zoroark set !</p>
+			<textarea id="set"></textarea><br />
+			<section>
+				<article>
+					<button onClick="window.location.reload();" class=".ghost-button">New set</button>
+				</article>
+				<article>
+					<button onclick="triggerExample()" class=".ghost-button">Copy</button>
+				</article>
+			</section>
+		</center>
+
+		<py-script>
+			from random import randint
+
+			moves = ["Aerial Ace", "Agility", "Bitter Malice", "Body Slam", "Brick Break", "Burning Jealousy", "Calm Mind", "Comeuppance", "Confuse Ray", "Crunch", "Curse", "Dark Pulse", "Detect", "Dig", "Endure", "Extrasensory", "Facade", "Fake Tears", "Flamethrower", "Fling", "Focus Blast", "Focus Punch", "Foul Play", "Giga Impact", "Grass Knot", "Happy Hour", "Helping Hand",  "Hex", "Hone Claws", "Hyper Beam", "Hyper Voice", "Icy Wind", "Imprison", "Knock Off", "Lash Out", "Leer", "Low Kick", "Low Sweep", "Memento", "Nasty Plot", "Night Shade", "Phantom Force", "Poltergeist", "Protect", "Psychic", "Rain Dance", "Rest", "Roar", "Scary Face", "Scratch", "Shadow Ball", "Shadow Claw", "Shadow Sneak", "Sleep Talk", "Sludge Bomb", "Snarl", "Snowscape", "Spite", "Substitute", "Swift", "Swords Dance", "Take Down", "Taunt", "Tera Blast", "Thief", "Torment", "Trick", "U-turn", "Will-O-Wisp"]
+
+			items = ["Aguav Berry", "Assault Vest", "Choice Band", "Choice Scarf", "Choice Specs", "Eviolite", "Expert Belt", "Figy Berry", "Focus Sash", "Heavy-Duty-Boots", "Iapapa Berry", "Leftovers", "Life Orb", "Mental Herb", "Power Herb", "Rocky Helmet", "Salac Berry","Ability Shield","Adrenaline Orb","Air Balloon","Auspicious Armor","Big Nugget","Black Glasses","Black Sludge","Blunder Policy","Booster Energy","Cell Battery","Charcoal","Clear Amulet","Covert Cloak","Custap Berry","Damp Rock","Draco Plate","Dragon Fang","Dread Plate","Earth Plate","Eject Button","Eject Pack","Electric Seed","Fairy Feather","Fist Plate","Flame Orb","Flame Plate","Grassy Seed","Grip Claw","Haban Berry","Hard Stone","Heat Rock","Icicle Plate","Icy Rock","Insect Plate","Iron Plate","Lagging Tail","Leppa Berry","Light Clay","Loaded Dice","Lum Berry","Luminous Moss","Magnet","Malicious Armor","Masterpiece Teacup","Meadow Plate","Metal Coat","Metronome","Mind Plate","Miracle Seed","Mirror Herb","Misty Seed","Muscle Band","Mystic Water","Never-Melt Ice","Normal Gem","Pixie Plate","Poison Barb","Protective Pads","Psychic Seed","Punching Glove","Quick Claw","Razor Claw","Razor Fang","Red Card","Room Service","Safety Goggles","Scope Lens","Sharp Beak","Shed Shell","Shell Bell","Shuca Berry","Silk Scarf","Silver Powder","Sitrus Berry","Sky Plate","Smooth Rock","Snowball","Soft Sand","Spell Tag","Splash Plate","Spooky Plate","Starf Berry","Sticky Barb","Tanga Berry","Terrain Extender","Toxic Orb","Toxic Plate","Twisted Spoon","Utility Umbrella","Weakness Policy","Wide Lens","Zoom Lens"]
+
+			types = ["Normal", "Fire", "Water", "Grass", "Flying", "Fighting", "Poison", "Electric", "Ground", "Rock", "Psychic", "Ice", "Bug", "Ghost", "Steel", "Dragon", "Dark", "Fairy"]
+
+			natures = ["Hardy","Lonely","Adamant","Naughty","Brave","Bold","Docile","Impish","Lax","Relaxed","Modest","Mild","Bashful","Rash","Quiet","Calm","Gentle","Careful","Quirky","Sassy","Timid","Hasty","Jolly","Naive","Serious"]
+
+			stats = ["Atk", "Def", "Spa", "SpD", "Spe"]
+
+			def quatres_moves():
+				quatres_moves = []
+				for i in range(4):
+					nbr = randint(0, len(moves)-1)
+					quatres_moves.append(moves[nbr])
+				return quatres_moves
+				
+			def item():
+				nbr = randint(0, len(items)-1)
+				item = items[nbr]
+				return item
+				
+			def teratype():
+				nbr = randint(0, len(types)-1)
+				type = types[nbr]
+				return type
+				
+			def what_nature():
+				nbr = randint(0, len(natures)-1)
+				nature = natures[nbr]
+				return nature
+				
+			def pokepaste(moves, item, tera, nature):
+				pokepaste = "Zoroark-Hisui @ " + item + "\n"
+				pokepaste += "Ability: Illusion" + "\n"
+				pokepaste += "Tera Type: " + tera + "\n"
+				pokepaste += nature + " Nature" + "\n"
+				pokepaste += "- " + moves[0] + "\n"
+				pokepaste += "- " + moves[1] + "\n"
+				pokepaste += "- " + moves[2] + "\n"
+				pokepaste += "- " + moves[3] + "\n"
+				return pokepaste
+
+			moves = quatres_moves()
+			item = item()
+			tera = teratype()
+			nature = what_nature()
+			set = pokepaste(moves, item, tera, nature)
+			pyscript.write("set", set)
+		</py-script>
+	</body> 
+</html>
